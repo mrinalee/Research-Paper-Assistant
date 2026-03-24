@@ -47,48 +47,6 @@ def health():
     return {"status": "running"}
 
 # Upload PDF
-#@app.post("/upload")
-# async def upload_pdf(file: UploadFile = File(...)):
-    # global vector_db, retriever
-
-    # file_path = f"data/{file.filename}"
-
-    # with open(file_path, "wb") as f:
-    #     f.write(await file.read())
-
-    # # Load PDF
-    # loader = PyMuPDFLoader(file_path)
-    # docs = loader.load()
-
-    # # Add metadata
-    # for doc in docs:
-    #     doc.metadata["paper"] = file.filename
-    #     doc.metadata["page"] = doc.metadata.get("page", "N/A")
-
-    # # Chunking
-    # splitter = RecursiveCharacterTextSplitter(
-    #     chunk_size=500,
-    #     chunk_overlap=100
-    # )
-    # chunks = splitter.split_documents(docs)
-
-    # # Embeddings
-    # embedding = HuggingFaceEmbeddings(
-    #     model_name="sentence-transformers/all-MiniLM-L6-v2"
-    # )
-
-    # # Create / Update vector DB
-    # if vector_db is None:
-    #     vector_db = FAISS.from_documents(chunks, embedding)
-    # else:
-    #     vector_db.add_documents(chunks)
-
-    # # Retriever
-    # retriever = vector_db.as_retriever(search_kwargs={"k": 3})
-
-    # return {"message": f"{file.filename} uploaded successfully"}
-
-
 @app.post("/upload")
 async def upload_pdfs(files: List[UploadFile] = File(...)):
     global vector_db, retriever
